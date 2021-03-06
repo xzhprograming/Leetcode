@@ -64,8 +64,25 @@ public class Solution {
     /*way2:递归
     * */
     ListNode reverseBetween1(ListNode head, int left, int right) {
-        //先反转前n个节点
-        return null;
+        if(left == 1){
+            return reverse(head, right);
+        }
+        head.next = reverseBetween(head.next, left - 1, right - 1);
+        return head;
+    }
+    // 反转以 head 为起点的 n 个节点，返回新的头结点
+    ListNode successor = null;
+    ListNode reverse(ListNode head, int n){
+        if(n == 1){
+            successor = head.next;
+            return head;
+        }
+        ListNode last = reverse(head.next, n - 1);
+        //反转链表
+        head.next.next = head;
+        // 让反转之后的 head 节点和后面的节点连起来
+        head.next = successor;
+        return last;
     }
 
 }

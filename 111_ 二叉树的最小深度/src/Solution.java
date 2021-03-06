@@ -54,7 +54,7 @@ public class Solution {
         if (root.left == null && root.right == null) //叶子节点
             return 1;
         if (root.left != null)
-//            mindepth = mindepth <= minDepth1(root.left) ? mindepth : minDepth1(root.left);
+//            mindepth = mindepth <= minDepth1(root.left) ? mindepth : minDepth1(root.left); // 超时，可能需要执行两次minDepth1(root.left)？？？
             mindepth = Math.min(mindepth, minDepth1(root.left));
         if (root.right != null)
             mindepth = Math.min(mindepth, minDepth1(root.right));

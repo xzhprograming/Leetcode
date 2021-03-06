@@ -17,14 +17,14 @@ public class Solution {
             if (nums[mid] == target) {
                 return mid;
             }
-            if (nums[0] <= nums[mid]) {
+            if (nums[0] <= nums[mid]) {  查找范围左闭[0, mid), mid上面已经判断过了
                 if (nums[0] <= target && target < nums[mid]) { //不使用等号会出现漏解的情况
                     r = mid - 1;
                 } else {
                     l = mid + 1;
                 }
             } else {
-                if (nums[mid] < target && target <= nums[n - 1]) { //注意要添加等号
+                if (nums[mid] < target && target <= nums[n - 1]) { //注意要添加等号查找范围右闭(mid, n-1]，否则会漏解
                     l = mid + 1;
                 } else {
                     r = mid - 1;

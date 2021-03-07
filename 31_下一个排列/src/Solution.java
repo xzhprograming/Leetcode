@@ -41,7 +41,7 @@ public class Solution {
         //查找左边的较小数和右边的较大数
         for(int i = n - 1; i >= 0; i--){
             if (i == 0){
-                reverse(nums, 0);
+                reverse(nums, 0);//若从n - 1 ~ 0都满足升序，则直接反转此区间数字
                 return;
             }
             if(nums[i - 1] < nums[i]) {

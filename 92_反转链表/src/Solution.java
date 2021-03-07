@@ -62,6 +62,9 @@ public class Solution {
     }
 
     /*way2:递归
+    * 1.找到递归终止条件
+    * 2.注意递归到最后一层时第一次的回溯过程，可帮助理解和编写代码
+    * 3.确定递归操作，编写相应代码
     * */
     ListNode reverseBetween1(ListNode head, int left, int right) {
         if(left == 1){

@@ -39,6 +39,7 @@ public class Solution {
             int third = n - 1; //初始化第三个数的位置
             int target = -nums[first]; // 初始化目标值，即第二个数和第三个数之和
 //            双指针
+            //判断条件后仅移动右指针，可使用for循环
             for (int second = first + 1; second < n;second++){
                 if (second > first + 1 && nums[second] == nums[second - 1]){
                     continue;
@@ -50,6 +51,7 @@ public class Solution {
                 }
                 // 如果指针重合，随着 second 后续的增加
                 // 就不会有满足 a+b+c=0 并且 b<c 的 c 了，可以退出循环
+                //因为此步才可以让时间复杂度缩小到O(N^2),因为寻找-nums[first]过程中，first后面的数只遍历一遍
                 if (second == third) {
                     break;
                 }
@@ -67,15 +69,18 @@ public class Solution {
     }
 //    复杂度分析
 //
-//    时间复杂度：O(N^2)O(N2)，其中 NN 是数组 \textit{nums}nums 的长度。
+//    时间复杂度：O(N^2)，其中 N 是数组 nums 的长度。
 //
 //    空间复杂度：O(\log N)O(logN)。我们忽略存储答案的空间，额外的排序的空间复杂度为 O(\log N)O(logN)。
-//    然而我们修改了输入的数组 \textit{nums}nums，在实际情况下不一定允许，因此也可以看成使用了一个额外的数组存储了 \textit{nums}nums 的副本并进行排序，空间复杂度为 O(N)O(N)。
+//    然而我们修改了输入的数组 \textit{nums}nums，在实际情况下不一定允许，因此也可以看成使用了一个额外的数组存储了 \textit{nums}nums 的副本并进行排序，空间复杂度为 O(N)。
 
     public static void main(String[] args) {
         int[] nums = new int[]{-1,0,1,2,-1,-4};
         Solution solution = new Solution();
         List<List<Integer>> ans = solution.threeSum(nums);
         System.out.println(ans.toString());
+
+        System.out.println(nums.getClass() == int[].class);
+
     }
 }

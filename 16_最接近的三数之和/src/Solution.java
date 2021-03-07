@@ -53,6 +53,7 @@ public class Solution {
             }
             // 使用双指针枚举 b 和 c
             int j = i + 1, k = n - 1;
+            // 根据条件判断是左指针移动还是右指针移动，对于判断条件后两个指针都可能进行移动尽量使用while
             while (j < k) {
                 int sum = nums[i] + nums[j] + nums[k];
                 // 如果和为 target 直接返回答案

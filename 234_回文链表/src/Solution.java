@@ -2,32 +2,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * 234. 回文链表
  * 题目：请判断一个链表是否为回文链表。
  * 示例 1:
- *
+ * <p>
  * 输入: 1->2
  * 输出: false
  * 示例 2:
- *
+ * <p>
  * 输入: 1->2->2->1
  * 输出: true
- *
+ * <p>
  * 思路：
  * 因为回文串是对称的，所以正着读和倒着读应该是一样的，这一特点是解决回文串问题的关键。
- *
- *情况1：给定的为链表时，使用递归得到链表的后序遍历序列，再与原链表进行对比，类似双指针
- *
+ * <p>
+ * 情况1：给定的为链表时，使用递归得到链表的后序遍历序列，再与原链表进行对比，类似双指针
+ * <p>
  * 链表其实也可以有前序遍历和后序遍历：
- *
+ * <p>
  * void traverse(ListNode head) {
- *     // 前序遍历代码
- *     traverse(head.next);
- *     // 后序遍历代码
+ * // 前序遍历代码
+ * traverse(head.next);
+ * // 后序遍历代码
  * }
- *
+ * <p>
  * 情况2：给定的为数组时，使用双指针，直接利用下标获取元素进行比较
+ *
  * @author xing
  * @create 2021-03-07 12:32
  */
@@ -35,9 +35,18 @@ import java.util.List;
 class ListNode {
     char val;
     ListNode next;
-    ListNode() {}
-    ListNode(char val) { this.val = val; }
-    ListNode(char val, ListNode next) { this.val = val; this.next = next;}
+
+    ListNode() {
+    }
+
+    ListNode(char val) {
+        this.val = val;
+    }
+
+    ListNode(char val, ListNode next) {
+        this.val = val;
+        this.next = next;
+    }
 
     @Override
     public String toString() {
@@ -46,13 +55,13 @@ class ListNode {
                 '}';
     }
 
-    public ListNode constructlist(String str){
+    public ListNode constructlist(String str) {
         int last = 0;
-        ListNode[] list  = new ListNode[10];
-        for (int i = 0; i < str.length(); i++){
+        ListNode[] list = new ListNode[10];
+        for (int i = 0; i < str.length(); i++) {
             list[i] = new ListNode(str.charAt(i));
         }
-        for (int i = 0; i < str.length() - 1; i++){
+        for (int i = 0; i < str.length() - 1; i++) {
             last = i;
             list[i].next = list[i + 1];
         }
@@ -63,19 +72,20 @@ class ListNode {
 
 public class Solution {
     /*情况1：给定的链表
-    * 使用递归，后序遍历链表，再与头结点进行比较
-    * 时间复杂度：O(n)
-    * 空间复杂度：O(n)
-    *
-    * 使用双指针中的快慢指针*/
+     * 使用递归，后序遍历链表，再与头结点进行比较
+     * 时间复杂度：O(n)
+     * 空间复杂度：O(n)
+     *
+     * 使用双指针中的快慢指针*/
     ListNode left = null;
+
     public boolean isPalindrome(ListNode head) {
         left = head;
         return traverse(head);
     }
 
-    public boolean traverse(ListNode right){
-        if(right == null)
+    public boolean traverse(ListNode right) {
+        if (right == null)
             return true;
         //链表后序遍历
         boolean res = traverse(right.next);
@@ -95,44 +105,53 @@ public class Solution {
             slow = slow.next;// slow forward one step
             fast = fast.next.next; // fast forward two steps
         }
+
         //2.确定中间节点位置
-        if (fast != null){ //链表长度为奇数
+        if (fast != null) { //链表长度为奇数
             slow = slow.next;
         }
         //3.慢指针指向中间节点后，反转慢指针后的节点
         ListNode res = reverse(slow);
+        ListNode originOrder = res; // 不改变原始的链表的结构
+        ListNode left = head;
         //4.将反转后的后半段链表与head头结点依次进行比较
-        while (head != null && res != null){
-            if (head.val != res.val){
+        while (res != null) {
+            if (left.val != res.val) {
                 return false;
             }
-            head = head.next;
+            left = left.next;
             res = res.next;
+        }
+        // 额外功能：不改变原始的链表的结构
+        left = reverse(originOrder);
+        while (head != null) {
+            System.out.println(head.val);
+            head = head.next;
         }
         return true;
     }
 
     // reverse the linkedlist
-    public ListNode reverse(ListNode slow){
+    public ListNode reverse(ListNode slow) {
+        ListNode head = slow;
         ListNode cur = null;
         ListNode tmp = null;
-        while(slow != null){
-            tmp = slow.next;
-            slow.next = cur;
-            cur = slow;
-            slow = tmp; // slow forward
+        while (head != null) {
+            tmp = head.next;
+            head.next = cur;
+            cur = head;
+            head = tmp; // slow forward
         }
         return cur;
     }
 
 
-
-//    情况2：给定的为数组
-    public boolean isPalindrome2(String str){
+    //    情况2：给定的为数组
+    public boolean isPalindrome2(String str) {
         int l = 0;
         int r = str.length() - 1;
-        while (l < r){
-            if(str.charAt(l) != str.charAt(r)){
+        while (l < r) {
+            if (str.charAt(l) != str.charAt(r)) {
                 return false;
             }
             l++;

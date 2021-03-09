@@ -1,6 +1,8 @@
 package com.java.binarytree;
 
 import com.java.utils.TreeNode;
+
+import java.util.HashMap;
 /**
  * @author xing
  * @create 2021-03-08 23:02
@@ -52,5 +54,18 @@ class Solution {
         //构建左子树时还需减去右子树的长度
         root.left = build(inorder, iStart, index - 1, postorder, pStart, pEnd - rightsize - 1);
         return root;
+    }
+
+    public static void main(String[] args) {
+        int a = 1;
+        System.out.println(Integer.toString(a));
+        String b = a + ",";
+        System.out.println(b);
+        HashMap<String, Integer> map = new HashMap<>();
+        int freq = map.getOrDefault("a", 0);
+        map.put("a", 1);
+        if (freq == 0){
+
+        }
     }
 }

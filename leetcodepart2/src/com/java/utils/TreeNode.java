@@ -10,11 +10,11 @@ import java.util.Queue;
  * @create 2021-03-07 19:16
  */
 public class TreeNode {
-    int val;
+    public int val;
     public TreeNode left;
     public TreeNode right;
 
-    TreeNode() {
+    public TreeNode() {
     }
 
     public TreeNode(int val) {

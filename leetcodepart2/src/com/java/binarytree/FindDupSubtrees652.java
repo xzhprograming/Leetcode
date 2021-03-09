@@ -17,8 +17,6 @@ import java.util.List;
  * 2.子树的结构可用后序遍历字符串String表示
  * String subTree = left + "," + right + "," + root.val;
  *  注：这里使用双引号代表String的拼接操作，使用单引号会被认为是字符，无法拼接报错
- *  或者使用
- *  String subTree = Integer.toString(left) + Integer.toString(right) + Integer.toString(root.val);
  * 可类比的题目：求二叉树的总节点数
  *
  * @author xing

@@ -16,6 +16,7 @@ import java.util.Queue;
 
 public class Solution {
 //    1.使用BFS不断更新二叉树的深度，取其最小值。
+// 到达距离根节点最近的叶子节点，则此条路径最短
     public int minDepth(TreeNode root){
         //特殊情况，根节点为空
         if(root == null)

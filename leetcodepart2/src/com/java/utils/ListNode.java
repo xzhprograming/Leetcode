@@ -5,8 +5,8 @@ package com.java.utils;
  * @create 2021-03-07 19:12
  */
 public class ListNode {
-    char val;
-    ListNode next;
+    public char val;
+    public ListNode next;
 
     ListNode() {
     }

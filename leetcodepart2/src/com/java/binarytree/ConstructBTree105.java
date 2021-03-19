@@ -7,12 +7,20 @@ import com.java.utils.TreeNode;
  *
  * 前序遍历 preorder = [3,9,20,15,7]
  * 中序遍历 inorder = [9,3,15,20,7]
+ * 解题思路：
+ * 根据前序遍历找到根节点，中序遍历序列根据根节点将区间划分为左右子树，
+ * 构建根节点，同时构左右节点
  * @author xing
  * @create 2021-03-08 22:20
  */
 
 
 public class ConstructBTree105 {
+
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        return build(preorder, 0, preorder.length - 1, inorder, 0, inorder.length - 1);
+    }
+
     TreeNode build(int[] preorder, int preStart, int preEnd,
                    int[] inorder, int inStart, int inEnd) {
 
@@ -30,7 +38,7 @@ public class ConstructBTree105 {
                 break;
             }
         }
-
+        // 划分左右子树进行左右子树构建
         int leftSize = index - inStart;  // 获取当前左子树的长度
 
         // 先构造出当前根节点

@@ -5,7 +5,7 @@ package com.java.utils;
  * @create 2021-03-07 19:12
  */
 public class ListNode {
-    public char val;
+    public int val;
     public ListNode next;
 
     ListNode() {

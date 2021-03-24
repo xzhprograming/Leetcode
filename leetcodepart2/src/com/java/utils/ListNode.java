@@ -8,14 +8,14 @@ public class ListNode {
     public int val;
     public ListNode next;
 
-    ListNode() {
+    public ListNode() {
     }
 
-    ListNode(char val) {
+    public ListNode(char val) {
         this.val = val;
     }
 
-    ListNode(char val, ListNode next) {
+    public ListNode(char val, ListNode next) {
         this.val = val;
         this.next = next;
     }

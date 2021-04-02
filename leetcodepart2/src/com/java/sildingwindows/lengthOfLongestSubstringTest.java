@@ -38,6 +38,8 @@ import java.util.Set;
  * @TIME 2021-01-31 22:02
  */
 public class lengthOfLongestSubstringTest {
+//    第一个问题，窗口何时扩大，何时缩小？
+//    第二个问题，滑动窗口能找到全部的解吗？
     public static int lengthOfLongestSubstring(String s) {
         Set<Character> set = new HashSet<Character>();
         int ans = 0;

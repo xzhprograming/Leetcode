@@ -78,6 +78,7 @@ public class Solution {
         return null;
     }
 
+    // 除根节点外，其余节点存入HashMap中
     public void dfs(TreeNode root){
         if (root.left != null){
             map.put(root.left.val, root); //添加的为其父节点
@@ -87,5 +88,6 @@ public class Solution {
             map.put(root.right.val, root);
             dfs(root.right);
         }
+        System.out.println(root.val);
     }
 }

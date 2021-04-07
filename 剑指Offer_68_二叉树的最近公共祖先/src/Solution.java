@@ -53,6 +53,7 @@ public class Solution {
         //情况3
         return left == null ? right : left;
     }
+
     // solution2:后序遍历存储所有的父节点，使用set存储p的父节点的值，如果set包含q的父节点，那此节点就是最近公共祖先
     Map<Integer, TreeNode> map = new HashMap<>(); // 存储所有的父节点
     Set<Integer> set = new HashSet<>(); //存储p的父节点

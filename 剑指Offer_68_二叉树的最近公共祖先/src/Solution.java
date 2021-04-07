@@ -44,7 +44,7 @@ public class Solution {
         //后序遍历二叉树
         TreeNode left = lowestCommonAncestor(root.left, p, q);
         TreeNode right = lowestCommonAncestor(root.right, p, q);
-        // 情况1
+        // 情况1：left和right一定分别是p和q
         if(left != null && right != null)
             return root;
         //情况2

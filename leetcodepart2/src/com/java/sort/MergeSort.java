@@ -38,21 +38,25 @@ public class MergeSort {
         while (pleft <= mid) {
             temp[count++] = nums[pleft++];
         }
+//        System.out.print(left);
+//        System.out.print("   ");
+//        System.out.print(right);
+//        System.out.println(Arrays.toString(temp));
         for (int i = 0; i < right - left + 1; i++) {
-            nums[left + i] = temp[i];
+            nums[left + i] = temp[i];  // left + i才是最终的下标
         }
     }
 
     public static void main(String[] args) {
         MergeSort ms = new MergeSort();
 
-        Integer[] nums = new Integer[]{5, 1, 1, 2, 0, 0};
-        Arrays.sort(nums, new myComparator());
-        System.out.println(Arrays.toString(nums));
-
-//        int[] nums = new int[]{5, 1, 1, 2, 0, 0};
-//        ms.sortArray(nums);
+//        Integer[] nums = new Integer[]{5, 1, 1, 2, 0, 0};
+//        Arrays.sort(nums, new myComparator());
 //        System.out.println(Arrays.toString(nums));
+
+        int[] nums = new int[]{5, 1, 1, 2, 7, 9};
+        ms.sortArray(nums);
+        System.out.println(Arrays.toString(nums));
     }
 }
 

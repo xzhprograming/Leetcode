@@ -1,4 +1,4 @@
-package com.java.codinginterview;
+package com.java.backtrack;
 
 import java.util.ArrayList;
 import java.util.List;

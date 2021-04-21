@@ -14,7 +14,7 @@ import java.util.Queue;
  * @author xing
  * @create 2021-03-26 16:10
  */
-public class BSTPrint {
+public class BSTPrint32 {
     public List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> ans = new ArrayList<>();
         // 边界条件

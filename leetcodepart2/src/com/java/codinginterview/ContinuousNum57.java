@@ -12,7 +12,7 @@ import java.util.List;
  * @author xing
  * @create 2021-04-02 21:21
  */
-public class ContinuousNum {
+public class ContinuousNum57 {
     public int[][] findContinuousSequence(int target) {
         // 上限最大数为target / 2
         // 因为target / 2 + (target / 2 + 1) > target
@@ -48,7 +48,7 @@ public class ContinuousNum {
     }
 
     public static void main(String[] args) {
-        ContinuousNum cn = new ContinuousNum();
+        ContinuousNum57 cn = new ContinuousNum57();
         int[][] ans = cn.findContinuousSequence(9);
         System.out.println(Arrays.deepToString(ans));
     }

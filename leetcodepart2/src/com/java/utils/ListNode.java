@@ -11,11 +11,11 @@ public class ListNode {
     public ListNode() {
     }
 
-    public ListNode(char val) {
+    public ListNode(int val) {
         this.val = val;
     }
 
-    public ListNode(char val, ListNode next) {
+    public ListNode(int val, ListNode next) {
         this.val = val;
         this.next = next;
     }

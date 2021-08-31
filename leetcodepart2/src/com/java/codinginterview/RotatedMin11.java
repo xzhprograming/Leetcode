@@ -12,7 +12,7 @@ import java.util.Arrays;
  * @author xing
  * @create 2021-03-20 18:05
  */
-public class RotatedMin {
+public class RotatedMin11 {
     public int minArray(int[] numbers) {
         if (numbers == null || numbers.length == 0)
             return 0;
@@ -108,7 +108,7 @@ public class RotatedMin {
 
 
     public static void main(String[] args) {
-        RotatedMin rm = new RotatedMin();
+        RotatedMin11 rm = new RotatedMin11();
         int[] nums = new int[]{3,4,5,1,2};
         int ans = rm.minArray(nums);
         System.out.println(ans);

@@ -57,11 +57,44 @@ public class PermutationStr38 {
         array[j] = temp;
     }
 
+    // 方法二： 回溯法
+    Set<String> res = new HashSet<>();
+
+    public String[] permutation1(String s) {
+        backtrack(s.toCharArray(), new StringBuilder(), new boolean[s.length()]);
+        return res.toArray(new String[0]);
+    }
+
+    public void backtrack(char[] charArray, StringBuilder sb, boolean[] visited){
+        if(sb.length() == charArray.length){
+            System.out.println(sb.toString());
+            res.add(sb.toString());
+            return;
+        }
+
+        for(int i = 0; i < charArray.length; i++){
+            // 剪枝，如果当前位置的元素已经使用过，则跳过进入下一个位置
+            if(visited[i]) continue;
+            // 做出选择
+            sb.append(charArray[i]);
+            // 更新标记
+            visited[i] = true;
+            // 进入下层回溯
+            backtrack(charArray,sb,visited);
+            // 撤销选择
+            sb.deleteCharAt(sb.length()-1);
+            visited[i] = false;
+        }
+    }
     public static void main(String[] args) {
         Set<Character> set = new HashSet<>();
         PermutationStr38 ps = new PermutationStr38();
         String[] ans = ps.permutation("abc");
-        for (String s : ans)
-            System.out.println(s);
+//        for (String s : ans)
+//            System.out.println(s);
+
+        // way2:
+        String[] abcs = ps.permutation1("abc");
+
     }
 }

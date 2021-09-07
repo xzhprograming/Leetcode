@@ -1,4 +1,6 @@
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -53,6 +55,20 @@ public class lengthOfLongestSubstringTest {
             }
             // 第 i 到 rk 个字符是一个极长的无重复字符子串,即做指针每前移一次都要更新最长子串的长度
             ans = Math.max(ans, right - i + 1);
+        }
+        return ans;
+    }
+
+    public int lengthOfLongestSubstring1(String s) {
+        Map<Character, Integer> map = new HashMap<>();
+        int left = -1;
+        int ans = 0;
+        for(int i = 0; i < s.length(); i++){
+            if(map.containsKey(s.charAt(i))){
+                left = Math.max(left, map.get(s.charAt(i)));  // 更新左指针位置
+            }
+            map.put(s.charAt(i), i);// 哈希表记录
+            ans = Math.max(i - left, ans); // 更新结果
         }
         return ans;
     }

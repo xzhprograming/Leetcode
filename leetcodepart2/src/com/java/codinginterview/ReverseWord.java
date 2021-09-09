@@ -1,6 +1,12 @@
 package com.java.codinginterview;
 
+import java.util.Arrays;
+
 /**
+ * 剑指 Offer 58 - I. 翻转单词顺序
+ * 输入一个英文句子，翻转句子中单词的顺序，但单词内字符的顺序不变。为简单起见，标点符号和普通字母一样处理。
+ * 例如输入字符串"I am a student. "，则输出"student. a am I"。
+ *
  * @author xing
  * @create 2021-04-02 22:35
  */
@@ -58,5 +64,7 @@ public class ReverseWord {
 
     public static void main(String[] args) {
         System.out.println(reverseWords1( "the sky is blue"));
+        String s = "a good   example";
+        System.out.println(Arrays.toString(s.split(" ")));
     }
 }

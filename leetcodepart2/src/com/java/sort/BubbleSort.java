@@ -7,17 +7,21 @@ import java.util.Arrays;
 public class BubbleSort {
     public static int[] bubbleSort(int[] nums) {
         // 冒泡排序
-        for(int i = 0; i < nums.length; i++){
-            for(int j = 0; j < nums.length - i; j++){
-                if(nums[i] < nums[j]){
-                    int temp = nums[i];
-                    nums[i] = nums[j];
-                    nums[j] = temp;
+        for(int i = 0; i < nums.length - 1; i++){
+            for(int j = 0; j < nums.length - i - 1; j++){
+                if(nums[j] > nums[j + 1]){
+                    int temp = nums[j];
+                    nums[j] = nums[j + 1];
+                    nums[j + 1] = temp;
                 }
             }
         }
         return nums;
     }
 
+    public static void main(String[] args) {
+        int[] nums = new int[]{1,2,6,7,9};
+        System.out.println(Arrays.toString(BubbleSort.bubbleSort(nums)));
+    }
 
 }

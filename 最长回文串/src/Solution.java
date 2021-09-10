@@ -1,4 +1,7 @@
 /**
+ *
+ * 5. 最长回文子串
+ * 给你一个字符串 s，找到 s 中最长的回文子串。
  * @Author xing
  * @TIME 2021-02-03 8:57
  */
@@ -25,6 +28,8 @@ public class Solution {
         dp[i][j] == dp[i+1][j-1]
     }
      */
+        char[] sArray = s.toCharArray();
+
         int n = s.length();
         if (n < 2)
             return s;

@@ -28,6 +28,8 @@ package com.java.codinginterview;
  */
 public class BitAdd65 {
     public int add(int a, int b) {
+        // 异或实现不进位加法
+        // 进位由（a & b）<< 1实现
         int sum = 0;  // 不进位和
         int carry = 0; // 进位
         while(b != 0){

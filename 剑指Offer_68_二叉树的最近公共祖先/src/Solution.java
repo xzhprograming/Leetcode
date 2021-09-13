@@ -45,12 +45,15 @@ public class Solution {
         TreeNode left = lowestCommonAncestor(root.left, p, q);
         TreeNode right = lowestCommonAncestor(root.right, p, q);
         // 情况1：left和right一定分别是p和q
-        if(left != null && right != null)
-            return root;
-        //情况2
+        // 当 left 和 right 同时为空 ：说明 root 的左右子树中都不包含 p,q ，返回 null
         if(left == null && right == null)
             return null;
+        //情况2
+        // 当 left 和 right 同时不为空 ：说明 p, q 分列在 root 的异侧（分别在左右子树），因此 root 为最近公共祖先，返回root ；
+        if(left != null && right != null)
+            return root;
         //情况3
+        // 当 left为空 ，right 不为空 ：p,q 都不在 root的左子树中，直接返回right。否则返回left
         return left == null ? right : left;
     }
 

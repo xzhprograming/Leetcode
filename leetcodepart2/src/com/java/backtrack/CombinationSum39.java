@@ -5,7 +5,15 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-/**
+/**39. 组合总和
+ * 给定一个无重复元素的正整数数组candidates和一个正整数target，找出candidates中所有可以使数字和为目标数target的唯一组合。
+ *
+ * candidates中的数字可以无限制重复被选取。如果至少一个所选数字数量不同，则两种组合是唯一的。
+ *
+ * 对于给定的输入，保证和为target 的唯一组合数少于 150 个。
+ *
+ * 解题思路：
+ *
  * @author xing
  * @create 2021-04-03 16:36
  */
@@ -84,7 +92,7 @@ public class CombinationSum39 {
     public static void main(String[] args) {
         CombinationSum39 cs = new CombinationSum39();
         int[] nums = new int[]{2,3,6,7};
-//        System.out.println(cs.combinationSum1(nums, 7));
+        System.out.println(cs.combinationSum1(nums, 7));
         List<List<int[]>> list = new ArrayList<>();
         List<int[]> list1 = new ArrayList<>();
         list1.add(nums);

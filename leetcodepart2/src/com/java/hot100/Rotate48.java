@@ -8,28 +8,36 @@ import java.util.Arrays;
  * 你必须在 原地 旋转图像，这意味着你需要直接修改输入的二维矩阵。请不要 使用另一个矩阵来旋转图像。
  * 链接：https://leetcode-cn.com/problems/rotate-image
  *
+ * 解题思路：先水平翻转，再按主对角线翻转
+ *
  * @author xing
  * @create 2021-04-22 20:37
  */
 public class Rotate48 {
     public void rotate(int[][] matrix) {
-        if (matrix.length == 0 || matrix == null)
+        // 先水平翻转，再按主对角线翻转
+        if(matrix == null || matrix.length == 0){
             return;
-
+        }
         int row = matrix.length;
         int col = matrix[0].length;
-
-        int[][] ans = new int[row][col];
-
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < i; j++) {
-//                ans[j][row - 1 - i] = matrix[i][j];
-                int tmp = matrix[i][j];
-                matrix[i][j] = matrix[j][i];
-                matrix[j][i] = tmp;
+        // 水平翻转
+        for(int i = 0; i < row / 2; i++){
+            for(int j = 0; j < col; j++){
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[row - i - 1][j];
+                matrix[row - i - 1][j] = temp;
             }
         }
-        System.out.println(Arrays.deepToString(matrix));
+
+        // 主对角线翻转
+        for(int i = 0; i < row; i++){
+            for(int j = 0; j < i; j++){
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
+            }
+        }
     }
 
     public static void testCopy(int[] copy){

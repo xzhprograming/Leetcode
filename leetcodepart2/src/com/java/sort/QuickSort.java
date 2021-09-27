@@ -7,21 +7,16 @@ public class QuickSort {
     // 快速排序,每次都能确定一个位置
     public static void quickSort(int[] nums, int left, int right){
 //        终止条件
-        if (left == right)
+        if(left >= right){
             return;
-        int index = partition(nums, left, right);
-        if (index > left)
-            quickSort(nums, left, index - 1); // 将分界值左边排序
-        if (index < right)
-            quickSort(nums, index + 1, right); // 将分界值右边排序
-        /*
+        }
+
         if (left < right){
             int index = partition(nums, left, right);
             quickSort(nums, left, index - 1); // 将分界值左边排序
             quickSort(nums, index + 1, right); // 将分界值右边排序
         }
 
-         */
     }
 
     public static int partition(int[] nums, int start, int end){

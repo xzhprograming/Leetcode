@@ -1,4 +1,7 @@
 /**
+ * 给你单链表的头指针 head 和两个整数left 和 right ，其中left <= right 。
+ * 请你反转从位置 left 到位置 right 的链表节点，返回 反转后的链表 。
+ *
  * @author xing
  * @create 2021-03-06 21:33
  */
@@ -70,7 +73,7 @@ public class Solution {
         if(left == 1){
             return reverse(head, right);
         }
-        head.next = reverseBetween(head.next, left - 1, right - 1);
+        head.next = reverseBetween1(head.next, left - 1, right - 1);
         return head;
     }
     // 反转以 head 为起点的 n 个节点，返回新的头结点

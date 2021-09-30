@@ -29,7 +29,6 @@ public class ValidateBST98 {
 
         Deque<TreeNode> stack = new LinkedList<>();
         long min = Long.MIN_VALUE;
-        double min_value = -Double.MAX_VALUE;
         //遍历终止条件
         while(!stack.isEmpty() || root != null){
             //先将当前节点的左子树压入栈中
@@ -49,21 +48,23 @@ public class ValidateBST98 {
         return true;
     }
     //递归实现
-    boolean isValidBST1(TreeNode root) {
-        return isValidBST(root, null, null);
+    //解题思路：递归遍历，使用inOrder，同时记录当前最小值与最大值
+    //只有当所有的节点都满足升序条件，才是有效的BST
+    public boolean isValidBST1(TreeNode root) {
+        return isValidBST(root, Long.MIN_VALUE, Long.MAX_VALUE);
     }
 
-    /* 限定以 root 为根的子树节点必须满足 max.val > root.val > min.val */
-    boolean isValidBST(TreeNode root, TreeNode min, TreeNode max) {
-        // base case
-        if (root == null) return true;
-        // 若 root.val 不符合 max 和 min 的限制，说明不是合法 BST
-        if (min != null && root.val <= min.val) return false;
-        if (max != null && root.val >= max.val) return false;
-        // 限定左子树的最大值是 root.val，右子树的最小值是 root.val
-        return isValidBST(root.left, min, root)
-                && isValidBST(root.right, root, max);
+    public boolean isValidBST(TreeNode root, long min, long max){
+        //终止条件
+        if(root == null){
+            return true;
+        }
+        //判断当前节点时候有效:节点顺序：left < root.val < right
+        if(root.val <= min || root.val >= max)
+            return false;
+        return isValidBST(root.left, min, root.val) && isValidBST(root.right, root.val, max);
     }
+
     //非递归遍历树
     public void traverse(TreeNode root){
         Deque<TreeNode> stack = new LinkedList<>();

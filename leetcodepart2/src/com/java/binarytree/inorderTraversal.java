@@ -8,7 +8,6 @@ import java.util.concurrent.ConcurrentHashMap;
  * 返回二叉树的中序遍历序列 （以中序序列：4，2，5，1，6，3 为例）
  * 递归和非递归写法
  *
- * @author GZDX    2021-04-07-22:48
  */
 
 class TreeNode {

@@ -40,7 +40,6 @@ public class longestConsecutive128 {
                     curLen++;
                     tmp++;
                 }
-
                 maxLen = Math.max(maxLen, curLen);
             }
         }

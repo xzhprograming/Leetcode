@@ -44,4 +44,28 @@ public class ConstructArr66 {
         }
         return b;
     }
+    public int[] productExceptSelf1(int[] nums) {
+        // 将b数组元素乘积分为两部分
+        // A[0] * ... *A[i - 1]  和A[i + 1] * ... * A[n - 1]
+
+        // 边界条件
+        if(nums.length == 0 || nums == null)
+            return new int[0];
+
+        int n = nums.length;
+        int[] b = new int[n];
+        b[0] = 1;
+        // 求下三角元素
+        for(int i = 1; i < n; i++){
+            b[i] = b[i - 1] * nums[i - 1];
+        }
+
+        int tmp = 1;
+        // 求上三角元素
+        for(int i = n - 2; i >= 0; i--){
+            tmp *= nums[i + 1];
+            b[i] *= tmp;
+        }
+        return b;
+    }
 }

@@ -42,7 +42,8 @@ public class MergeSort {
 //        System.out.print("   ");
 //        System.out.print(right);
 //        System.out.println(Arrays.toString(temp));
-        for (int i = 0; i < right - left + 1; i++) {
+//        for (int i = 0; i < right - left + 1; i++) {
+        for (int i = 0; i < count; i++) {
             nums[left + i] = temp[i];  // left + i才是最终的下标
         }
     }

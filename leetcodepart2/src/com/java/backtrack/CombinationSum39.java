@@ -77,7 +77,7 @@ public class CombinationSum39 {
             ans1.add(new ArrayList<Integer>(path));
             return;
         }
-//        按某种顺序搜索
+//        按某种顺序搜索，为了对结果去重
 //        从每一层的第 2 个结点开始，都不能再搜索产生同一层结点已经使用过的 candidate 里的元素。
 //        从start开始
         for(int i = start; i < candidates.length; i++){

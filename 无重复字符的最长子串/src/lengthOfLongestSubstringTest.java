@@ -1,7 +1,4 @@
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * 方法一：滑动窗口
@@ -73,8 +70,29 @@ public class lengthOfLongestSubstringTest {
         return ans;
     }
 
+
+    public static int lengthOfLongestSubstring2(String s) {
+        int size = 0;
+        List<Character> chars = new ArrayList<>();
+        for(int i = 0; i < s.length(); i++){
+            chars.add(s.charAt(i));
+            for (int j = i + 1; j <= s.length(); j++){
+                // j == n 表示直到最后一个字符都没有重复
+                if(j == s.length() || chars.contains(s.charAt(j))){
+                    size = Math.max(j - i, size);
+                    chars.clear();
+                    break;
+                } else {
+                    chars.add(s.charAt(j));
+                }
+            }
+        }
+        return size;
+    }
+
     public static void main(String[] args) {
-        String s = new String("abcabcbb");
+        String s = new String("vdf");
         System.out.println(lengthOfLongestSubstring(s));
+        System.out.println(lengthOfLongestSubstring2(s));
     }
 }

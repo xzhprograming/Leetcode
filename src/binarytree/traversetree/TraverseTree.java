@@ -87,7 +87,7 @@ public class TraverseTree {
     /**
      * 中序遍历
      */
-    public List<Integer> inorderTraversal(TreeNode root) {
+    public static List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> list = new ArrayList<>();
         if (root == null) {
             return list;
@@ -164,6 +164,7 @@ public class TraverseTree {
 
         while (!stack1.isEmpty()) {
             TreeNode node = stack1.pop();
+            // Stack2 的入栈顺序是 根 -> 右 -> 左
             stack2.push(node);
 
             // 如果左子节点存在，压入第一个栈
@@ -178,6 +179,7 @@ public class TraverseTree {
         }
 
         // 从第二个栈中弹出节点并添加到结果列表中
+        // 弹出 Stack2 时，顺序是 左 -> 右 -> 根，即后序遍历的正确顺序。
         while (!stack2.isEmpty()) {
             result.add(stack2.pop().val);
         }
@@ -185,11 +187,34 @@ public class TraverseTree {
         return result;
     }
 
+
+    public static List<Integer> traverse1(TreeNode root){
+        List<Integer> ans = new ArrayList<>();
+        if(root == null){
+            return ans;
+        }
+        Stack<TreeNode> stack = new Stack<>();
+
+        while(root != null || !stack.isEmpty()){
+            // 左节点入栈
+            while(root != null){
+                stack.push(root);
+                root = root.left;
+            }
+            // 出栈
+            TreeNode tmp = stack.pop();
+            ans.add(tmp.val);
+
+            root = tmp.right;
+        }
+        return ans;
+    }
+
     public static void main(String[] args) {
         int[] preOrder = new int[]{1,2,4,5,3};
         int[] inOrOrder = new int[]{4,2,5,1,3};
         TreeNode treeNode = TreeNode.constructTree(preOrder, inOrOrder);
-        System.out.println(TraverseTree.postorderTraversal1(treeNode));
+        System.out.println(TraverseTree.traverse1(treeNode));
     }
 }
 

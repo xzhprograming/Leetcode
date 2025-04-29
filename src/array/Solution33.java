@@ -10,6 +10,10 @@ package array;
 public class Solution33 {
 
     public int search(int[] nums, int target) {
+        // 利用旋转数组的局部有序性进行二分查找
+        // 情况1：nums[mid] < target <= nums[len-1]
+        // 情况2：nums[0] <= nums[mid] : nums[0] <= target < nums[mid]
+
         int n = nums.length;
 
         int left = 0;
@@ -20,20 +24,18 @@ public class Solution33 {
 
             if(nums[mid] == target){
                 return mid;
-            } else if (nums[mid] < target){
-                if(nums[mid] < nums[left] && nums[mid] < nums[right]){
+            }
+
+            if(nums[0] <= nums[mid]){
+                if(nums[0] <= target && target < nums[mid]){
                     right = mid - 1;
-                } else if(nums[mid] > nums[left] && nums[mid] > nums[right]){
-                    left = mid + 1;
-                } else{
+                } else {
                     left = mid + 1;
                 }
-            } else{
-                if(nums[mid] < nums[left] && nums[mid] < nums[right]){
-                    right = mid - 1;
-                } else if(nums[mid] > nums[left] && nums[mid] > nums[right]){
+            } else {
+                if(nums[mid] < target && target <= nums[right]){
                     left = mid + 1;
-                } else{
+                } else {
                     right = mid - 1;
                 }
             }

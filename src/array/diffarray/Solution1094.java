@@ -37,6 +37,7 @@ public class Solution1094 {
 
             // 乘客在 [from, to) 区间内在车上
             diff[from] += passengers;
+            // 区间 [from, to) 是左闭右开，to 位置已经下车
             // 在 to 位置乘客已经下车，所以在 to 位置减去
             if(to < diff.length){
                 diff[to] -= passengers;

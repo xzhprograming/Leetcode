@@ -20,6 +20,48 @@ package array.diffarray;
  **/
 public class Solution1094 {
 
+    /**
+     * 解法一：暴力解法
+     * 对于每个位置，遍历所有行程计算当前乘客数
+     */
+    public boolean carPoolingBruteForce(int[][] trips, int capacity) {
+        // 找到最远的位置
+        int maxLocation = 0;
+        for (int[] trip : trips) {
+            maxLocation = Math.max(maxLocation, trip[2]);
+        }
+
+        // 遍历每个位置，检查是否超载
+        for (int i = 0; i <= maxLocation; i++) {
+            int passengers = 0;
+            // 计算当前位置的乘客数
+            for (int[] trip : trips) {
+                // 乘客在 [from, to) 区间内在车上
+                if (trip[1] <= i && i < trip[2]) {
+                    passengers += trip[0];
+                }
+            }
+            // 如果超载，返回 false
+            if (passengers > capacity) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * 解法二：差分数组（最优解）
+     *
+     * 核心思想：
+     * 1. 将问题转化为区间修改问题
+     * 2. 在 from 位置上车 +passengers，在 to 位置下车 -passengers
+     * 3. 使用差分数组高效处理区间修改
+     * 4. 最后通过前缀和还原每个位置的乘客数，检查是否超载
+     *
+     * 时间复杂度：O(n + m)，n 是最大位置数，m 是行程数
+     * 空间复杂度：O(n)
+     */
     public boolean carPooling(int[][] trips, int capacity) {
         // 找到最远的位置
         int maxLocation = 0;

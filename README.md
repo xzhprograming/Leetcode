@@ -69,7 +69,9 @@ public class TreeNode {
 #### 数组双指针
 | # | 题目 | 文件 | 难度 |
 |---|------|------|------|
+| 11 | [盛最多水的容器](https://leetcode.cn/problems/container-with-most-water/) | [Solution11.java](src/doublepointer/array/Solution11.java) | Medium |
 | 15 | [三数之和](https://leetcode.cn/problems/3sum/) | [Solution15.java](src/doublepointer/array/Solution15.java) | Medium |
+| 18 | [四数之和](https://leetcode.cn/problems/4sum/) | [Solution18.java](src/doublepointer/array/Solution18.java) | Medium |
 | 26 | [删除有序数组中的重复项](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/) | [Solution26.java](src/doublepointer/array/Solution26.java) | Easy |
 | 27 | [移除元素](https://leetcode.cn/problems/remove-element/) | [Solution27.java](src/doublepointer/array/Solution27.java) | Easy |
 | 42 | [接雨水](https://leetcode.cn/problems/trapping-rain-water/) | [Solution42.java](src/doublepointer/array/Solution42.java) | Hard |

@@ -124,6 +124,7 @@ public class TreeNode {
 #### 基本操作
 | # | 题目 | 文件 | 难度 |
 |---|------|------|------|
+| 101 | [对称二叉树](https://leetcode.cn/problems/symmetric-tree/) | [Solution101.java](src/binarytree/thought/Solution101.java) | Easy |
 | 104 | [二叉树的最大深度](https://leetcode.cn/problems/maximum-depth-of-binary-tree/) | [Solution104.java](src/binarytree/Solution104.java) | Easy |
 | 116 | [填充每个节点的下一个右侧节点指针](https://leetcode.cn/problems/populating-next-right-pointers-in-each-node/) | [Solution116.java](src/binarytree/thought/Solution116.java) | Medium |
 | 124 | [二叉树中的最大路径和](https://leetcode.cn/problems/binary-tree-maximum-path-sum/) | [Solution124.java](src/binarytree/Solution124.java) | Hard |
@@ -136,6 +137,7 @@ public class TreeNode {
 |---|------|------|------|
 | 105 | [从前序与中序遍历序列构造二叉树](https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/) | [Solution105.java](src/binarytree/construct/Solution105.java) | Medium |
 | 106 | [从后序与中序遍历序列构造二叉树](https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-traversal/) | [Solution106.java](src/binarytree/construct/Solution106.java) | Medium |
+| 654 | [最大二叉树](https://leetcode.cn/problems/maximum-binary-tree/) | [Solution654.java](src/binarytree/construct/Solution654.java) | Medium |
 | 889 | [根据前序和后序遍历构造二叉树](https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-postorder-traversal/) | [Solution889.java](src/binarytree/construct/Solution889.java) | Medium |
 
 #### 二叉搜索树 (BST)

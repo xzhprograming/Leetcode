@@ -143,6 +143,7 @@ public class TreeNode {
 #### 二叉搜索树 (BST)
 | # | 题目 | 文件 | 难度 |
 |---|------|------|------|
+| 95 | [不同的二叉搜索树 II](https://leetcode.cn/problems/unique-binary-search-trees-ii/) | [Solution95.java](src/binarysearchtree/Solution95.java) | Medium |
 | 96 | [不同的二叉搜索树](https://leetcode.cn/problems/unique-binary-search-trees/) | [Solution96.java](src/binarysearchtree/Solution96.java) | Medium |
 | 98 | [验证二叉搜索树](https://leetcode.cn/problems/validate-binary-search-tree/) | [Solution98.java](src/binarysearchtree/Solution98.java) | Medium |
 | 152 | [二叉搜索树的最小共同祖先](https://leetcode.cn/problems/maximum-product-subarray/) | [Solution152.java](src/binarysearchtree/Solution152.java) | Medium |
@@ -153,6 +154,7 @@ public class TreeNode {
 | 701 | [二叉搜索树中的插入操作](https://leetcode.cn/problems/insert-into-a-binary-search-tree/) | [Solution701.java](src/binarysearchtree/Solution701.java) | Medium |
 
 **BST 核心操作：**
+- 生成：枚举当前值域中的每个值作为根节点，递归生成左右子树后两两组合
 - 搜索：根据 `root.val` 与目标值大小关系，只进入左子树或右子树
 - 插入：递归或迭代找到第一个空子节点位置，挂接新节点
 - 删除：先定位目标节点，再按无子节点、单子节点、双子节点三种结构处理；双子节点可用右子树最小节点作为中序后继补位

@@ -22,6 +22,7 @@ src/
 ├── dfs/                    # 深度优先搜索
 ├── doublepointer/          # 双指针
 │   ├── array/              # 数组双指针
+│   ├── binarysearch/       # 二分查找
 │   ├── linkedlist/         # 链表双指针
 │   └── slidewindow/        # 滑动窗口
 ├── dp/                     # 动态规划
@@ -93,6 +94,17 @@ public class TreeNode {
 | # | 题目 | 文件 | 难度 |
 |---|------|------|------|
 | 83 | [删除排序链表中的重复元素](https://leetcode.cn/problems/remove-duplicates-from-sorted-list/) | [Sloution83.java](src/doublepointer/linkedlist/Sloution83.java) | Easy |
+
+#### 二分查找
+| # | 题目 | 文件 | 难度 |
+|---|------|------|------|
+| 34 | [在排序数组中查找元素的第一个和最后一个位置](https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/) | [Solution34.java](src/doublepointer/binarysearch/Solution34.java) | Medium |
+| 69 | [x 的平方根](https://leetcode.cn/problems/sqrtx/) | [Solution69.java](src/doublepointer/binarysearch/Solution69.java) | Easy |
+
+**二分查找核心技巧：**
+- 明确搜索区间和循环条件，闭区间常用 `left <= right`
+- 查找边界时不立即返回命中值，而是继续收缩左侧或右侧区间
+- 处理乘法、加法等可能溢出的判断时，优先使用 `long` 或等价变形
 
 ---
 

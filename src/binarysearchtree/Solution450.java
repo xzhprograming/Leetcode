@@ -67,4 +67,78 @@ public class Solution450 {
         }
         return node;
     }
+
+
+    /**
+     * 迭代法删除 BST 中的目标节点。
+     *
+     * 先沿 BST 搜索路径找到目标节点及其父节点，再按删除节点的子树数量分情况处理：
+     * 1. 无子节点：直接置空；
+     * 2. 只有一个子节点：用唯一子节点补位；
+     * 3. 左右子树都存在：用右子树中的最小节点（中序后继）补位。
+     *
+     * 时间复杂度 O(h)，空间复杂度 O(1)，h 为树高。
+     *
+     * @param root 二叉搜索树根节点
+     * @param key 待删除的节点值
+     * @return 删除目标节点后的根节点
+     */
+    public TreeNode deleteNode1(TreeNode root, int key) {
+        if(root == null){
+            return null;
+        }
+        TreeNode cur = root;
+        TreeNode curParent = null;
+        while(cur != null){
+            if(cur.val == key){
+                break;
+            }
+            curParent = cur;
+            if(cur.val > key){
+                cur = cur.left;
+            } else {
+                cur = cur.right;
+            }
+        }
+        if(cur == null){
+            return root;
+        }
+
+        if(cur.left == null && cur.right == null){
+            cur = null;
+        } else if(cur.left == null){
+            cur = cur.right;
+        } else if(cur.right == null){
+            cur = cur.left;
+        } else {
+            // 找到右子树的最左节点作为中序后继，用它补到被删除节点的位置。
+            TreeNode successor = cur.right;
+            TreeNode successorParent = cur;
+            if(successor.left == null){
+                // 右子节点本身就是后继，先把后继从原位置摘下。
+                successorParent.right = successor.right;
+            } else {
+                while(successor.left != null){
+                    successorParent = successor;
+                    successor = successor.left;
+                }
+                // 后继最多只有右子树，将其右子树接回后继父节点的左侧。
+                successorParent.left = successor.right;
+            }
+            successor.right = cur.right;
+            successor.left = cur.left;
+            cur = successor;
+        }
+
+        if(curParent == null){
+            return cur;
+        } else {
+            if(curParent.left != null && curParent.left.val == key){
+                curParent.left = cur;
+            } else {
+                curParent.right = cur;
+            }
+        }
+        return root;
+    }
 }

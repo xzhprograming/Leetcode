@@ -44,25 +44,33 @@ public class Solution98 {
     }
 
 
-    // 利用BST的中序遍历序列有序来判断
+    /**
+     * 利用 BST 的中序遍历序列严格递增来判断是否合法。
+     *
+     * 迭代模拟中序遍历，用 pre 记录上一个访问节点；
+     * 如果当前节点值小于等于 pre，说明中序序列不递增，直接返回 false。
+     *
+     * 时间复杂度 O(n)，空间复杂度 O(h)，n 为节点数，h 为树高。
+     *
+     * @param root 二叉树根节点
+     * @return 是否为合法二叉搜索树
+     */
     public boolean isValidBST1(TreeNode root) {
+
         Stack<TreeNode> stack = new Stack<>();
-
-        Integer inorder = null;
-
-        while(!stack.isEmpty() || root != null){
-            // 找到最左子节点
-            while(root != null){
-                stack.push(root);
-                root = root.left;
+        TreeNode cur = root;
+        TreeNode pre = null;
+        while(cur != null || !stack.isEmpty()){
+            while(cur != null){
+                stack.push(cur);
+                cur = cur.left;
             }
-
-            root = stack.pop();
-            if(inorder != null && root.val <= inorder){
+            TreeNode node = stack.pop();
+            if(pre != null && node.val <= pre.val){
                 return false;
             }
-            inorder = root.val;
-            root = root.right;
+            pre = node;
+            cur = node.right;
         }
         return true;
     }

@@ -150,6 +150,13 @@ public class TreeNode {
 | 450 | [删除二叉搜索树中的节点](https://leetcode.cn/problems/delete-node-in-a-bst/) | [Solution450.java](src/binarysearchtree/Solution450.java) | Medium |
 | 538 | [把二叉搜索树转换为累加树](https://leetcode.cn/problems/convert-bst-to-greater-tree/) | [Solution538.java](src/binarysearchtree/Solution538.java) | Medium |
 | 700 | [二叉搜索树中的搜索](https://leetcode.cn/problems/search-in-a-binary-search-tree/) | [Solution700.java](src/binarysearchtree/Solution700.java) | Easy |
+| 701 | [二叉搜索树中的插入操作](https://leetcode.cn/problems/insert-into-a-binary-search-tree/) | [Solution701.java](src/binarysearchtree/Solution701.java) | Medium |
+
+**BST 核心操作：**
+- 搜索：根据 `root.val` 与目标值大小关系，只进入左子树或右子树
+- 插入：递归或迭代找到第一个空子节点位置，挂接新节点
+- 删除：先定位目标节点，再按无子节点、单子节点、双子节点三种结构处理；双子节点可用右子树最小节点作为中序后继补位
+- 验证：使用上下界递归约束，或利用中序遍历结果严格递增的性质
 
 **二叉树解题思维模式：**
 1. **遍历模式**：通过遍历一遍二叉树得到答案，使用 `traverse` 函数配合外部变量

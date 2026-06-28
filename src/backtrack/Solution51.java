@@ -35,10 +35,9 @@ public class Solution51 {
         return ans;
     }
 
-    // 每一行中选取一个有效位置
-    // 在同一行或同一列或同一斜线上的棋子w为无效位置
+    // 每一层递归固定一行，在该行中选取一个不会被已有皇后攻击的位置
     public void backtrack(int n, int row, char[][] chess, List<List<String>> ans){
-        //如果一直找到第n行，表明此时已经在0到n-1行内找到了符合条件的摆放位置，则记录结果回溯到上一层，继续寻找
+        // 如果一直找到第 n 行，说明 0 到 n - 1 行都已经放好了皇后
         if(row == n){
             List<String> tmpList = new ArrayList<>();
             for(int i = 0; i < n; i++){
@@ -61,7 +60,7 @@ public class Solution51 {
     }
 
     // 判断当前位置是否有效
-    // 在同一行或同一列或同一斜线上的棋子w为无效位置
+    // 同一行、同一列或同一斜线上已有皇后时，当前位置不能放置皇后
     public boolean isValidPos(int n, int col, int row, char[][] chess){
         // 同一列有Queen
         for(int i = 0; i < n; i++){
@@ -75,7 +74,8 @@ public class Solution51 {
                 return false;
             }
         }
-        // 同一斜线上有Queen，此时只要检查左上方和右上方即可，因为后面的位置在后面穷举的过程中会继续检查
+        // 回溯按行从上往下放Queen，当前行下面还没有Queen
+        // 所以对角线只需检查左上方和右上方，下面的位置会在后续递归中检查
         // 检查右上方
         for(int i = row - 1, j = col + 1; i >= 0 && j < n; i--, j++){
             if(chess[i][j] == 'Q'){

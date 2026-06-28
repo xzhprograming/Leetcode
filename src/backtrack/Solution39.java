@@ -1,6 +1,7 @@
 package backtrack;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -32,15 +33,14 @@ public class Solution39 {
 
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         List<List<Integer>> ans = new ArrayList<>();
+        // 排序后可以在 candidates[i] > target 时提前结束当前层搜索
+        Arrays.sort(candidates);
         backtrack(candidates, 0, target, ans, new ArrayList<>());
         return ans;
     }
 
     public void backtrack(int[] candidates, int start, int target, List<List<Integer>> ans, List<Integer> list){
-        if(target < 0){
-            return;
-        }
-
+        // 剩余目标和为 0，说明当前路径中的数字之和刚好满足要求
         if(target == 0){
             ans.add(new ArrayList<>(list));
             return;
@@ -49,9 +49,15 @@ public class Solution39 {
         // 类似于子集问题，但是想让每个元素被重复使用，只要把 i + 1 改成 i 即可
         // 举例：candidates= [2,3,6,7]， target = 7
         // 那么[2,2,3], [2,3,2],[3,2,2]都满足条件，但是其都符合同一个子集的条件
-        // 可以看如果2已经被使用了，那么后序的结果中，不应该再包含这个元素了，因为包含该元素的子集，在2为固定位的时候已经被找到了
+        // 可以看如果 2 已经被使用了，那么后续结果中不应该再包含这个元素
+        // 因为包含该元素的子集，在 2 为固定位的时候已经被找到了
         for(int i = start; i < candidates.length; i++){
+            // 数组已排序，当前候选数超过剩余目标时，后面的数也不可能组成答案
+            if(candidates[i] > target){
+                break;
+            }
             list.add(candidates[i]);
+            // 组合总和 I 允许重复使用当前数字，下一层仍然从 i 开始
             backtrack(candidates, i, target - candidates[i], ans, list);
             list.remove(list.size() - 1);
         }

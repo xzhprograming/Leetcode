@@ -233,6 +233,7 @@ for 状态1 in 状态1的所有取值：
 |---|------|------|------|
 | 17 | [电话号码的字母组合](https://leetcode.cn/problems/letter-combinations-of-a-phone-number/) | [Solution17.java](src/backtrack/Solution17.java) | Medium |
 | 39 | [组合总和](https://leetcode.cn/problems/combination-sum/) | [Solution39.java](src/backtrack/Solution39.java) | Medium |
+| 40 | [组合总和 II](https://leetcode.cn/problems/combination-sum-ii/) | [Solution40.java](src/backtrack/Solution40.java) | Medium |
 | 46 | [全排列](https://leetcode.cn/problems/permutations/) | [Solution46.java](src/backtrack/Solution46.java) | Medium |
 | 47 | [全排列 II](https://leetcode.cn/problems/permutations-ii/) | [Solution47.java](src/backtrack/Solution47.java) | Medium |
 | 51 | [N 皇后](https://leetcode.cn/problems/n-queens/) | [Solution51.java](src/backtrack/Solution51.java) | Hard |
@@ -240,6 +241,7 @@ for 状态1 in 状态1的所有取值：
 | 78 | [子集](https://leetcode.cn/problems/subsets/) | [Solution78.java](src/backtrack/Solution78.java) | Medium |
 | 79 | [单词搜索](https://leetcode.cn/problems/word-search/) | [Solution79.java](src/backtrack/Solution79.java) | Medium |
 | 90 | [子集 II](https://leetcode.cn/problems/subsets-ii/) | [Solution90.java](src/backtrack/Solution90.java) | Medium |
+| 216 | [组合总和 III](https://leetcode.cn/problems/combination-sum-iii/) | [Solution216.java](src/backtrack/Solution216.java) | Medium |
 
 **核心思想**：尝试所有可能的选择，找到一个选择使得问题得到解决，然后返回到上一个选择，并尝试下一个选择（进行选择并撤销）。
 
@@ -247,6 +249,11 @@ for 状态1 in 状态1的所有取值：
 - 排列问题
 - 组合问题（子集问题）
 - N 皇后问题
+
+**组合总和类技巧**：
+- 排序后可以在当前候选数超过剩余目标时提前剪枝
+- 用 `start` 控制下一层搜索起点，区分元素是否可以重复使用
+- 对含重复元素的输入，在同一层跳过相同候选数，避免生成重复组合
 
 ---
 

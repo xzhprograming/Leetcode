@@ -255,6 +255,70 @@ for 状态1 in 状态1的所有取值：
 - 用 `start` 控制下一层搜索起点，区分元素是否可以重复使用
 - 对含重复元素的输入，在同一层跳过相同候选数，避免生成重复组合
 
+**回溯通用模板**：
+```text
+void backtrack(路径, 选择列表) {
+    if (满足结束条件) {
+        result.add(new ArrayList<>(路径));
+        return;
+    }
+
+    for (选择 : 选择列表) {
+        if (选择不合法) {
+            continue;
+        }
+
+        做选择;
+        backtrack(路径, 新的选择列表);
+        撤销选择;
+    }
+}
+```
+
+**组合/子集模板**：
+```java
+void backtrack(int[] nums, int start, List<Integer> path) {
+    result.add(new ArrayList<>(path));
+
+    for (int i = start; i < nums.length; i++) {
+        path.add(nums[i]);
+        backtrack(nums, i + 1, path);
+        path.remove(path.size() - 1);
+    }
+}
+```
+
+**排列模板**：
+```java
+void backtrack(int[] nums, boolean[] used, List<Integer> path) {
+    if (path.size() == nums.length) {
+        result.add(new ArrayList<>(path));
+        return;
+    }
+
+    for (int i = 0; i < nums.length; i++) {
+        if (used[i]) {
+            continue;
+        }
+
+        used[i] = true;
+        path.add(nums[i]);
+        backtrack(nums, used, path);
+        path.remove(path.size() - 1);
+        used[i] = false;
+    }
+}
+```
+
+**回溯注意点**：
+- 记录答案时要拷贝路径：`new ArrayList<>(path)`，不能直接保存 `path`
+- 组合问题通常用 `start` 防止重复选择；排列问题通常用 `used` 记录当前路径已选元素
+- 允许重复使用当前元素时，下一层传 `i`；不允许重复使用时，下一层传 `i + 1`
+- 输入有重复元素时，先排序，再用 `i > start && nums[i] == nums[i - 1]` 做同层去重
+- 剪枝一般放在递归前或循环里，例如当前和已经超过目标值就停止继续搜索
+- 做选择和撤销选择必须成对出现，撤销要恢复到进入本层递归前的状态
+- N 皇后这类题要把“不合法位置”的判断封装清楚，通常检查列和对角线
+
 ---
 
 ### 6. DFS / BFS
@@ -264,9 +328,103 @@ for 状态1 in 状态1的所有取值：
 | 62 | [不同路径](https://leetcode.cn/problems/unique-paths/) | [Solution62.java](src/dfs/Solution62.java) | Medium |
 | 200 | [岛屿数量](https://leetcode.cn/problems/number-of-islands/) | [Solution200.java](src/dfs/Solution200.java) | Medium |
 | 329 | [矩阵中的最长递增路径](https://leetcode.cn/problems/longest-increasing-path-in-a-matrix/) | [Solution329.java](src/dfs/Solution329.java) | Hard |
+| 695 | [岛屿的最大面积](https://leetcode.cn/problems/max-area-of-island/) | [Solution695.java](src/dfs/Solution695.java) | Medium |
 | 1020 | [飞地的数量](https://leetcode.cn/problems/number-of-enclaves/) | [Solution1020.java](src/dfs/Solution1020.java) | Medium |
 | 1254 | [统计封闭岛屿的数目](https://leetcode.cn/problems/number-of-closed-islands/) | [Solution1254.java](src/dfs/Solution1254.java) | Medium |
 | 1905 | [统计子岛屿](https://leetcode.cn/problems/count-sub-islands/) | [Solution1905.java](src/dfs/Solution1905.java) | Medium |
+
+以下模板中，`TARGET` 表示本题要搜索的目标值，`VISITED` 表示访问后用于标记的位置值。
+
+**二维网格 DFS 模板**：
+```java
+int TARGET = 1;
+int VISITED = 0;
+int[][] dirs = new int[][]{{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+
+void dfs(int[][] grid, int i, int j) {
+    if (i < 0 || j < 0 || i >= grid.length || j >= grid[0].length) {
+        return;
+    }
+    if (grid[i][j] != TARGET) {
+        return;
+    }
+
+    // 标记已访问，防止上下左右来回递归导致重复遍历
+    grid[i][j] = VISITED;
+
+    for (int[] dir : dirs) {
+        dfs(grid, i + dir[0], j + dir[1]);
+    }
+}
+```
+
+**计数型 DFS 模板**：
+```java
+int dfs(int[][] grid, int i, int j) {
+    if (i < 0 || j < 0 || i >= grid.length || j >= grid[0].length
+            || grid[i][j] != TARGET) {
+        return 0;
+    }
+
+    grid[i][j] = VISITED;
+
+    int count = 1;
+    for (int[] dir : dirs) {
+        count += dfs(grid, i + dir[0], j + dir[1]);
+    }
+    return count;
+}
+```
+
+**判断型 DFS 模板**：
+```java
+boolean dfs(int[][] grid, int i, int j) {
+    if (i < 0 || j < 0 || i >= grid.length || j >= grid[0].length) {
+        return false;
+    }
+    if (grid[i][j] != TARGET) {
+        return true;
+    }
+
+    grid[i][j] = VISITED;
+
+    boolean up = dfs(grid, i - 1, j);
+    boolean down = dfs(grid, i + 1, j);
+    boolean left = dfs(grid, i, j - 1);
+    boolean right = dfs(grid, i, j + 1);
+    return up && down && left && right;
+}
+```
+
+**边界淹没法模板**：
+```java
+int solve(int[][] grid) {
+    int m = grid.length, n = grid[0].length;
+
+    for (int j = 0; j < n; j++) {
+        flood(grid, 0, j);
+        flood(grid, m - 1, j);
+    }
+    for (int i = 0; i < m; i++) {
+        flood(grid, i, 0);
+        flood(grid, i, n - 1);
+    }
+
+    // 统计剩余目标区域
+    return countRest(grid);
+}
+```
+
+**DFS 注意点**：
+- 访问 `grid[i][j]` 前必须先判断边界，否则会数组越界
+- 进入一个陆地/目标节点后，要立刻标记已访问，再递归四个方向
+- `0` 和 `1` 的含义要看题目：`200` 中 `1` 是陆地，`1254` 中 `0` 是陆地
+- 如果 DFS 会修改原数组，后续还要复用输入时需要先复制矩阵
+- 统计岛屿数量时，外层每遇到一片未访问陆地，答案加一，再用 DFS 淹没整座岛
+- 统计岛屿面积时，DFS 返回当前连通块大小
+- 判断封闭岛屿时，越界通常返回 `false`，走到水或已访问位置通常返回 `true`
+- 边界淹没法适合“不能到达边界”“被包围”“封闭区域”类题目
+- 递归深度过大时可能栈溢出，网格很大可以改成 BFS 或显式栈
 
 ---
 
